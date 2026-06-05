@@ -285,17 +285,17 @@
 
   /* 공유 버튼 */
   .share-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
     margin-bottom: 20px;
   }
   .share-btn {
+    width: 100%;
     padding: 12px;
     border-radius: 10px;
     border: 1px solid var(--border);
     background: var(--card);
     color: var(--text);
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px; font-weight: 600;
+    font-size: 13px; font-weight: 600;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 6px;
     transition: background .15s;
@@ -407,8 +407,7 @@
 
     <!-- 공유 버튼 -->
     <div class="share-row">
-      <button class="share-btn" onclick="copyLink()">🔗 링크 복사</button>
-      <button class="share-btn" onclick="shareKakao()">💬 카톡 공유</button>
+      <button class="share-btn" onclick="copyLink()">🔗 링크 복사하기</button>
     </div>
 
     <div class="result-divider"></div>
@@ -687,21 +686,7 @@ function copyLink() {
   });
 }
 
-function shareKakao() {
-  // 카카오 SDK 없을 경우 링크 복사로 대체
-  const url = window.location.href;
-  const text = '나는 취준 회피심리 자가진단 해봤어!\n🔗 ';
-  if (navigator.share) {
-    navigator.share({ title: '취준 회피심리 자가진단', text: '나의 회피 패턴을 알아보세요!', url });
-  } else {
-    navigator.clipboard.writeText(text + url).then(() => {
-      const toast = document.getElementById('toast');
-      toast.textContent = '💬 카카오톡에 붙여넣기 하세요!';
-      toast.classList.add('show');
-      setTimeout(() => { toast.classList.remove('show'); toast.textContent = '🔗 링크가 복사되었습니다!'; }, 2500);
-    });
-  }
-}
+
 </script>
 </body>
 </html>
